@@ -40,8 +40,9 @@ def download(file, url):
     with requests.get(url, stream=True) as r:
         r.raise_for_status()
         with open('{}.mp3'.format(file), 'wb') as f:
-            for chunk in r.iter_content(chunk_size=1024):
+            for chunk in r.iter_content(chunk_size=2048):
                 f.write(chunk)
+                print('.', end='', flush=True)
     print('download complate')
     return None
 
